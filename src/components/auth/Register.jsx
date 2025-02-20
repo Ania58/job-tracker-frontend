@@ -6,6 +6,7 @@ const Register = () => {
         email: "",
         password: ""
     });
+    const [error, setError] = useState("");  
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -13,6 +14,7 @@ const Register = () => {
 
       const handleSubmit = async (e) => {
         e.preventDefault();
+        setError("");
         try {
             const response = await API.post("/register", formData);
             console.log("User registered", response.data);
@@ -20,13 +22,18 @@ const Register = () => {
             
         } catch (error) {
             console.error("Registration error:", error.response?.data || error);
-            alert("Registration failed!");
+            if (error.response?.status === 400) {
+                setError("User already exists. Try logging in.");
+            } else {
+                setError("Registration failed. Please try again.");
+            }
         }
       };
 
       return (
         <div>
             <h2>Register</h2>
+            {error && <p style={{ color: "red" }}>{error}</p>} 
             <form onSubmit={handleSubmit}>
                 <input 
                  type="email" 
