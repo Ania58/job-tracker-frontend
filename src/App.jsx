@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Footer from './components/layout/Footer'
 import Header from './components/layout/Header'
+import MainPage from './components/layout/MainPage'
 import './App.css'
 
 function App() {
@@ -8,8 +9,8 @@ function App() {
   return (
     <>
     <Header />
-      <h1>Track the Jobs You Applied for</h1>
-      <Footer />
+    <MainPage />
+    <Footer />
     </>
   )
 }
