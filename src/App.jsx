@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Footer from './components/layout/Footer'
 import './App.css'
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
       </div>
       <p className="read-the-docs">
       </p>
+      <Footer />
     </>
   )
 }
