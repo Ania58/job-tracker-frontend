@@ -26,6 +26,10 @@ const Login = () => {
         }
     };
 
+    const handleGoogleLogin = () => {
+        window.location.href = `${import.meta.env.VITE_API_URL}/auth/google`; 
+    };
+
     return (
         <div>
             <h2>Login</h2>
@@ -48,6 +52,10 @@ const Login = () => {
                     required
                 />
                 <button type="submit">Log In</button>
+                <hr />
+                <button onClick={handleGoogleLogin} style={{ marginTop: "10px" }}>
+                    Sign in with Google
+                </button>
             </form>
         </div>
     );

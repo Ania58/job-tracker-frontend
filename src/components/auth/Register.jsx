@@ -32,6 +32,10 @@ const Register = ({setUser}) => {
         }
       };
 
+      const handleGoogleRegister = () => {
+        window.location.href = `${import.meta.env.VITE_API_URL}/auth/google`; 
+    };
+
       return (
         <div>
             <h2>Register</h2>
@@ -54,6 +58,10 @@ const Register = ({setUser}) => {
                  required
                 />
                 <button type="submit">Sign Up</button>
+                <hr />
+                <button onClick={handleGoogleRegister} style={{ marginTop: "10px" }}>
+                    Sign up with Google
+                </button>
             </form>
         </div>
       );
