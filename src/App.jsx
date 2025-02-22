@@ -29,6 +29,17 @@ function App() {
     checkUserSession();
 }, []);
 
+useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const userParam = urlParams.get("user");
+
+    if (userParam) {
+        const userData = JSON.parse(decodeURIComponent(userParam));
+        setUser(userData);  
+        window.history.replaceState({}, document.title, "/"); 
+    }
+}, []);
+
 if (loading) return <p>Loading...</p>;
 
   return (
