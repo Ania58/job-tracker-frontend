@@ -45,7 +45,7 @@ if (loading) return <p>Loading...</p>;
                         <button onClick={() => setShowRegister(!showRegister)}>
                             {showRegister ? "Go to Login" : "Go to Register"}
                         </button>
-                        {showRegister ? <Register /> : <Login />}
+                        {showRegister ? <Register setUser={setUser}/> : <Login />}
                     </>
                 )}
                 <MainPage />

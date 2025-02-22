@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import API from "../../api/axios";
 
-const Register = () => {
+const Register = ({setUser}) => {
     const [formData, setFormData] = useState({
         email: "",
         password: ""
@@ -16,14 +16,16 @@ const Register = () => {
         e.preventDefault();
         setError("");
         try {
-            const response = await API.post("/register", formData);
+            const response = await API.post("/auth/register", formData, { withCredentials: true });
             console.log("User registered", response.data);
-            alert("Registration Successful.You can log in now.");
+            setUser(response.data.user);  
             
         } catch (error) {
             console.error("Registration error:", error.response?.data || error);
             if (error.response?.status === 400) {
                 setError("User already exists. Try logging in.");
+            } else if (error.response?.status === 422) {
+                setError("Invalid input. Make sure email and password are correct.");
             } else {
                 setError("Registration failed. Please try again.");
             }
