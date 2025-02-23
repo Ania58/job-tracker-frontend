@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../context/UserProvider";
 
 const MainPage = () => {
   const navigate = useNavigate();
+  const { user } = useContext(UserContext);
+
+  const handleGetStarted = () => {
+    if (user) {
+        navigate("/my-jobs"); 
+    } else {
+        navigate("/register"); 
+    }
+};
     return (
         <main className="main-container">
       <section className="hero">
@@ -13,7 +23,7 @@ const MainPage = () => {
           positions you’ve applied for, interview updates, and application
           statuses—all in one place.
         </p>
-        <button className="cta-button" onClick={() => navigate("/register")}>Get Started</button>
+        <button className="cta-button" onClick={handleGetStarted}>Get Started</button>
       </section>
 
       <section className="hero-image">
