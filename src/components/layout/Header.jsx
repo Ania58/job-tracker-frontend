@@ -1,14 +1,16 @@
 import React, { useContext }  from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation  } from "react-router-dom";
 import { UserContext } from "../context/UserProvider";
 import Logout from "../auth/Logout";
 
 const Header = () => {
     const { user, setUser } = useContext(UserContext);
+    const location = useLocation();
     return (
         <header>
             <h2>JobSync</h2>
             <nav>
+               {location.pathname !== "/" && <Link to="/">Home</Link> }| 
             {!user ? (
                     <>
                         <Link to="/register">Register</Link> | <Link to="/login">Login</Link>
