@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import API from "../../api/axios";
 import { UserContext } from "../context/UserProvider";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
     const { setUser } = useContext(UserContext);
@@ -14,6 +15,8 @@ const Login = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
+    const navigate = useNavigate();
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError("");
@@ -21,9 +24,8 @@ const Login = () => {
         try {
             const response = await API.post("/auth/login", formData, { withCredentials: true });
             console.log("Login successful:", response.data);
-            alert("Login Successful!");
             setUser(response.data.user);
-            window.location.reload();
+            navigate("/");
         } catch (error) {
             console.error("Login error:", error.response?.data || error);
             setError("Invalid credentials. Please try again.");
