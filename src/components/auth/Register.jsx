@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import API from "../../api/axios";
 
 const Register = ({setUser}) => {
@@ -12,6 +13,8 @@ const Register = ({setUser}) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
       };
 
+      const navigate = useNavigate();
+
       const handleSubmit = async (e) => {
         e.preventDefault();
         setError("");
@@ -19,6 +22,7 @@ const Register = ({setUser}) => {
             const response = await API.post("/auth/register", formData, { withCredentials: true });
             console.log("User registered", response.data);
             setUser(response.data.user);  
+            navigate("/"); 
             
         } catch (error) {
             console.error("Registration error:", error.response?.data || error);
@@ -63,6 +67,9 @@ const Register = ({setUser}) => {
                     Sign up with Google
                 </button>
             </form>
+            <p>
+                Already have an account? <button onClick={() => navigate("/login")} style={{ background: "none", border: "none", color: "blue", textDecoration: "underline", cursor: "pointer" }}>Log in here</button>
+            </p>
         </div>
       );
 };
