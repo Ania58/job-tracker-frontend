@@ -18,6 +18,7 @@ const Header = () => {
                 ) : (
                     <>
                          <Link to="/add-job">Add a job</Link> |
+                         <Link to="/my-jobs">My Jobs</Link> |
                          <Logout /> 
                     </>
                 )}
