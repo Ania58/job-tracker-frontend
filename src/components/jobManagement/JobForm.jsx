@@ -1,4 +1,5 @@
 import React, { useState,  useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import API from "../../api/axios";
 
 const JobForm = ({ jobToEdit, onFormSubmit }) => {
@@ -22,6 +23,8 @@ const JobForm = ({ jobToEdit, onFormSubmit }) => {
         setJob({...job, [e.target.name]: e.target.value})
     };
 
+    const navigate = useNavigate();
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError("");
@@ -32,11 +35,13 @@ const JobForm = ({ jobToEdit, onFormSubmit }) => {
             if (jobToEdit) {
                 response = await API.patch(`/jobs/${jobToEdit.id}`, job, { withCredentials: true });
                 setSuccess("Job updated successfully!");
+                navigate("/my-jobs"); 
             } else {
                 response = await API.post("/jobs", job, { withCredentials: true });
                 console.log("Job added successfully", response.data);
                 setSuccess("Job added successfully!");
                 setJob({ company: "", position: "", status: "Applied", applied_date: "", notes: "" });
+                navigate("/my-jobs"); 
             }
             console.log("Job action successful", response.data);
             if (onFormSubmit) onFormSubmit();
