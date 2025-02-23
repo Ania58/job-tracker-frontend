@@ -63,6 +63,9 @@ const Login = () => {
                     Sign in with Google
                 </button>
             </form>
+            <p>
+                Don't have an account? <button onClick={() => navigate("/login")} style={{ background: "none", border: "none", color: "blue", textDecoration: "underline", cursor: "pointer" }}>Sign in here</button>
+            </p>
         </div>
     );
 };
