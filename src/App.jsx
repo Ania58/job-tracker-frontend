@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { UserProvider } from "./components/context/UserProvider";
 import Footer from './components/layout/Footer';
 import Header from './components/layout/Header';
@@ -13,15 +14,19 @@ function App() {
   return (
     <>
     <UserProvider>
-      <Header />
+      <Router>
+        <Header />
         <main>
-          <AuthSection /> 
-          <JobForm />
-          {jobToEdit && <JobForm jobToEdit={jobToEdit} />}
-          <MainPage /> 
+          <Routes>
+            <Route path="/" element={<MainPage />} />
+            <Route path="/login" element={<AuthSection />} />
+            <Route path="/register" element={<AuthSection />} />
+            <Route path="/add-job" element={<JobForm />} />
+          </Routes>
         </main>
         <Footer />
-      </UserProvider>
+      </Router>
+    </UserProvider>
     </>
   )
 }
