@@ -33,7 +33,7 @@ const JobForm = ({ jobToEdit, onFormSubmit }) => {
                 response = await API.patch(`/jobs/${jobToEdit.id}`, job, { withCredentials: true });
                 setSuccess("Job updated successfully!");
             } else {
-                const response = await API.post("/jobs", job, { withCredentials: true });
+                response = await API.post("/jobs", job, { withCredentials: true });
                 console.log("Job added successfully", response.data);
                 setSuccess("Job added successfully!");
                 setJob({ company: "", position: "", status: "Applied", applied_date: "", notes: "" });
