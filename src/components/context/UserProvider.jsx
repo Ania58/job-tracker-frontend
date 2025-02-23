@@ -14,6 +14,7 @@ export const UserProvider = ({ children }) => {
                 setUser(response.data.user);
             } catch (error) {
                 console.log("No active session", error.response?.data || error);
+                setUser(null);
             } finally {
                 setLoading(false);
             }
@@ -30,6 +31,11 @@ export const UserProvider = ({ children }) => {
             const userData = JSON.parse(decodeURIComponent(userParam));
             setUser(userData);
             window.history.replaceState({}, document.title, "/");
+            setTimeout(async () => {
+                await checkUserSession();
+                console.log("User rechecked after Google login.");
+            }, 1000);
+            
         }
     }, []);
 

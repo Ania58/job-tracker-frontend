@@ -1,6 +1,7 @@
 import React, { useContext }  from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../context/UserProvider";
+import Logout from "../auth/Logout";
 
 const Header = () => {
     const { user, setUser } = useContext(UserContext);
@@ -15,7 +16,7 @@ const Header = () => {
                 ) : (
                     <>
                          <Link to="/add-job">Add a job</Link> |
-                        <button onClick={() => setUser(null)}>Logout</button>
+                         <Logout /> 
                     </>
                 )}
             </nav>

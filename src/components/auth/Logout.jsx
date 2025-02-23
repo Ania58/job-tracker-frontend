@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import API from "../../api/axios"; 
+import { UserContext } from "../context/UserProvider";
 
-const Logout = ({ setUser }) => {
+const Logout = () => {
+  const { setUser } = useContext(UserContext);
   const handleLogout = async () => {
     try {
-      await API.get("/auth/logout", { withCredentials: true }); 
+      const response = await API.get("/auth/logout", { withCredentials: true }); 
+      window.location.reload();
       setUser(null); 
     } catch (error) {
       console.error("Logout error:", error.response?.data || error);
