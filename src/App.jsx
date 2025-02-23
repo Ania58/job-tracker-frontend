@@ -4,9 +4,9 @@ import { UserProvider } from "./components/context/UserProvider";
 import Footer from './components/layout/Footer';
 import Header from './components/layout/Header';
 import MainPage from './components/layout/MainPage';
-import AuthSection from "./components/auth/AuthSection";
+import Login from "./components/auth/Login";  
+import Register from "./components/auth/Register";
 import JobForm from './components/jobManagement/JobForm';
-import API from './api/axios';
 import './App.css'
 
 function App() {
@@ -19,8 +19,8 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={<MainPage />} />
-            <Route path="/login" element={<AuthSection />} />
-            <Route path="/register" element={<AuthSection />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
             <Route path="/add-job" element={<JobForm />} />
           </Routes>
         </main>
