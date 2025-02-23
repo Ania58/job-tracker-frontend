@@ -12,7 +12,6 @@ import ViewJob from "./components/jobManagement/ViewJob";
 import './App.css'
 
 function App() {
-  const [jobToEdit, setJobToEdit] = useState(null);
   return (
     <>
     <UserProvider>
