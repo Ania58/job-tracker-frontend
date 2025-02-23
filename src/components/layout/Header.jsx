@@ -1,4 +1,5 @@
 import React, { useContext }  from "react";
+import { Link } from "react-router-dom";
 import { UserContext } from "../context/UserProvider";
 
 const Header = () => {
@@ -9,11 +10,11 @@ const Header = () => {
             <nav>
             {!user ? (
                     <>
-                        <a href="#">Register</a> | <a href="#">Login</a>
+                        <Link to="/register">Register</Link> | <Link to="/login">Login</Link>
                     </>
                 ) : (
                     <>
-                        <a href="#">Add a job</a> | 
+                         <Link to="/add-job">Add a job</Link> |
                         <button onClick={() => setUser(null)}>Logout</button>
                     </>
                 )}
