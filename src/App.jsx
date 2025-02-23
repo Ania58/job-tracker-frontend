@@ -12,16 +12,16 @@ function App() {
   const [jobToEdit, setJobToEdit] = useState(null);
   return (
     <>
+    <UserProvider>
       <Header />
-      <main>
-        <UserProvider>
+        <main>
           <AuthSection /> 
           <JobForm />
           {jobToEdit && <JobForm jobToEdit={jobToEdit} />}
-        </UserProvider>
-        <MainPage /> 
-      </main>
-      <Footer />
+          <MainPage /> 
+        </main>
+        <Footer />
+      </UserProvider>
     </>
   )
 }
