@@ -7,6 +7,8 @@ import MainPage from './components/layout/MainPage';
 import Login from "./components/auth/Login";  
 import Register from "./components/auth/Register";
 import JobForm from './components/jobManagement/JobForm';
+import UserJobs from "./components/jobManagement/UserJobs"; 
+import ViewJob from "./components/jobManagement/ViewJob"; 
 import './App.css'
 
 function App() {
@@ -22,6 +24,8 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/add-job" element={<JobForm />} />
+            <Route path="/my-jobs" element={<UserJobs />} />
+            <Route path="/jobs/:id" element={<ViewJob />} />
           </Routes>
         </main>
         <Footer />
