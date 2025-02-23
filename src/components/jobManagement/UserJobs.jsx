@@ -7,6 +7,7 @@ const UserJobs = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
     const [selectedJob, setSelectedJob] = useState(null); 
+    const [viewingJob, setViewingJob] = useState(null);
 
     useEffect(() => {
         fetchJobs();
@@ -52,12 +53,26 @@ const UserJobs = () => {
                 <ul>
                     {jobs.map((job) => (
                         <li key={job.id}>
-                            <strong>{job.position}</strong> at {job.company} 
+                            <strong onClick={() => setViewingJob(job)}
+                                style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>
+                                {job.position}</strong> at {job.company} 
                             <button onClick={() => setSelectedJob(job)}>Edit</button>
                             <button onClick={() => handleDelete(job.id)}>Delete</button>
                         </li>
                     ))}
                 </ul>
+            )}
+
+            {viewingJob && (
+                <div>
+                    <h3>Job Details</h3>
+                    <p><strong>Company:</strong> {viewingJob.company}</p>
+                    <p><strong>Position:</strong> {viewingJob.position}</p>
+                    <p><strong>Status:</strong> {viewingJob.status}</p>
+                    <p><strong>Applied Date:</strong> {viewingJob.applied_date}</p>
+                    <p><strong>Notes:</strong> {viewingJob.notes || "No additional notes."}</p>
+                    <button onClick={() => setViewingJob(null)}>Close</button>
+                </div>
             )}
             
             {selectedJob && (
