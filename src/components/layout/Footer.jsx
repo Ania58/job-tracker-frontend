@@ -4,8 +4,8 @@ const Footer = () => {
     const year = new Date().getFullYear();
 
     return (
-        <footer>
-            <p>All rights reserved JobSync © {year} </p>
+        <footer className="bg-blue-600 text-white text-center py-4 mt-10 shadow-lg">
+            <p className="text-sm md:text-base font-light">All rights reserved JobSync © {year} </p>
         </footer>
     )
 };
