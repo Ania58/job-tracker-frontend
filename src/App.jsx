@@ -9,6 +9,8 @@ import JobForm from './components/jobManagement/JobForm';
 import UserJobs from "./components/jobManagement/UserJobs"; 
 import ViewJob from "./components/jobManagement/ViewJob"; 
 import './App.css'
+import "../css/main.css"
+
 
 function App() {
   return (
