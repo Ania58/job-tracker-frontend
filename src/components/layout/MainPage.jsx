@@ -23,7 +23,7 @@ const MainPage = () => {
           positions you’ve applied for, interview updates, and application
           statuses—all in one place.
         </p>
-        <button className="mt-6 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md transition-all" 
+        <button className="mt-6 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md transition-all cursor-pointer" 
         onClick={handleGetStarted}>Get Started</button>
       </section>
 
