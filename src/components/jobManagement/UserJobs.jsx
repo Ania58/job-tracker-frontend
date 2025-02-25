@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import API from "../../api/axios";
 import JobForm from "./JobForm"; 
+import { useNavigate } from "react-router-dom";
 
 const UserJobs = () => {
     const [jobs, setJobs] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
     const [selectedJob, setSelectedJob] = useState(null); 
-    const [viewingJob, setViewingJob] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetchJobs();
@@ -55,13 +56,13 @@ const UserJobs = () => {
                         {jobs.map((job) => (
                             <li key={job.id} className="py-4 flex justify-between items-center">
                                  <div>
-                                    <strong onClick={() => setViewingJob(job)}
+                                    <strong onClick={() => navigate(`/jobs/${job.id}`)}
                                        className="cursor-pointer text-blue-500 hover:underline">
                                         {job.position}
                                     </strong> at {job.company} 
                                 </div>
                                 <div className="space-x-2">
-                                    <button onClick={() => setSelectedJob(job)} className="bg-yellow-500 text-white px-3 py-1 rounded-md hover:bg-yellow-600 cursor-pointer">
+                                    <button onClick={() => navigate(`/jobs/${job.id}?edit=true`)} className="bg-yellow-500 text-white px-3 py-1 rounded-md hover:bg-yellow-600 cursor-pointer">
                                         Edit
                                     </button>
                                     <button onClick={() => handleDelete(job.id)} className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 cursor-pointer">
@@ -71,20 +72,6 @@ const UserJobs = () => {
                             </li>
                         ))}
                     </ul>
-                )}
-
-                {viewingJob && (
-                    <div className="mt-6 p-4 bg-gray-200 rounded-md shadow-lg">
-                        <h3 className="text-xl font-semibold text-gray-700">Job Details</h3>
-                        <p><strong>Company:</strong> {viewingJob.company}</p>
-                        <p><strong>Position:</strong> {viewingJob.position}</p>
-                        <p><strong>Status:</strong> {viewingJob.status}</p>
-                        <p><strong>Applied Date:</strong> {viewingJob.applied_date}</p>
-                        <p><strong>Notes:</strong> {viewingJob.notes || "No additional notes."}</p>
-                        <button onClick={() => setViewingJob(null)} className="mt-4 bg-gray-500 text-white px-4 py-1 rounded-md hover:bg-gray-600 cursor-pointer">
-                            Close
-                        </button>
-                    </div>
                 )}
                 
                 {selectedJob && (
