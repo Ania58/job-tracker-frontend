@@ -42,36 +42,48 @@ const ViewJob = () => {
     };
 
     return (
-        <div>
-            <h2>Job Details</h2>
-            {loading ? (
-                <p>Loading...</p>
-            ) : error ? (
-                <p style={{ color: "red" }}>{error}</p>
-            ) : (
-                job && (
-                    <>
-                        <p><strong>Company:</strong> {job.company}</p>
-                        <p><strong>Position:</strong> {job.position}</p>
-                        <p><strong>Status:</strong> {job.status}</p>
-                        <p><strong>Applied Date:</strong> {job.applied_date}</p>
-                        <p><strong>Notes:</strong> {job.notes}</p>
-                        <button onClick={() => setIsEditing(!isEditing)}>Edit</button>
-                        <button onClick={handleDelete}>Delete</button>
-                        <button onClick={() => navigate("/")}>Back</button>
-
-                        {isEditing && (
-                            <JobForm 
-                                jobToEdit={job} 
-                                onFormSubmit={() => {
-                                    setIsEditing(false);
-                                    fetchJob();
-                                }} 
-                            />
-                        )}
-                    </>
-                )
-            )}
+        <div className="min-h-screen flex items-center justify-center bg-gray-100">
+             <div className="max-w-3xl bg-white p-6 rounded-lg shadow-lg w-full">
+                <h2 className="text-2xl font-bold text-blue-600 mb-4 text-center">Job Details</h2>
+                {loading ? (
+                    <p className="text-gray-500 text-center">Loading...</p>
+                ) : error ? (
+                    <p className="text-red-500 text-center"></p>
+                ) : (
+                    job && (
+                        <div className="space-y-4">
+                            <p className="text-lg"><strong className="text-gray-700">Company:</strong> {job.company}</p>
+                            <p className="text-lg"><strong className="text-gray-700">Position:</strong> {job.position}</p>
+                            <p className="text-lg"><strong className="text-gray-700">Status:</strong> {job.status}</p>
+                            <p className="text-lg"><strong className="text-gray-700">Applied Date:</strong> {job.applied_date}</p>
+                            <p className="text-lg"><strong className="text-gray-700">Notes:</strong> {job.notes}</p>
+                            <div className="flex space-x-4 mt-6">
+                                <button onClick={() => setIsEditing(!isEditing)} className="bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600">
+                                    Edit
+                                    {isEditing ? "Cancel" : "Edit"}
+                                </button>
+                                <button onClick={handleDelete} className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">
+                                    Delete
+                                </button>
+                                <button onClick={() => navigate("/")} className="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600">
+                                    Back
+                                </button>
+                            </div>
+                            {isEditing && (
+                                 <div className="mt-6 p-4 bg-gray-100 rounded-lg shadow-inner">
+                                    <JobForm 
+                                        jobToEdit={job} 
+                                        onFormSubmit={() => {
+                                            setIsEditing(false);
+                                            fetchJob();
+                                        }} 
+                                    />
+                                </div>
+                            )}
+                        </div>
+                    )
+                )}
+            </div>
         </div>
     );
 };
