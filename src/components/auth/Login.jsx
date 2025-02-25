@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import API from "../../api/axios";
 import { UserContext } from "../context/UserProvider";
 import { useNavigate } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc"; 
 
 const Login = () => {
     const { setUser } = useContext(UserContext);
@@ -37,35 +38,50 @@ const Login = () => {
     };
 
     return (
-        <div>
-            <h2>Login</h2>
-            {error && <p style={{ color: "red" }}>{error}</p>}
-            <form onSubmit={handleSubmit}>
-                <input 
-                    type="email" 
-                    name="email"
-                    placeholder="Email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                />
-                <input 
-                    type="password" 
-                    name="password"
-                    placeholder="Password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    required
-                />
-                <button type="submit">Log In</button>
-                <hr />
-                <button onClick={handleGoogleLogin} style={{ marginTop: "10px" }}>
-                    Sign in with Google
-                </button>
-            </form>
-            <p>
-                Don't have an account? <button onClick={() => navigate("/login")} style={{ background: "none", border: "none", color: "blue", textDecoration: "underline", cursor: "pointer" }}>Sign in here</button>
-            </p>
+        <div className="min-h-screen flex items-center justify-center bg-gray-100">
+             <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+                <h2 className="text-2xl font-bold text-center text-blue-600 mb-4">Login</h2>
+                {error && <p className="text-red-500 text-center mb-2">{error}</p>}
+                <form onSubmit={handleSubmit} className="space-y-4">
+                    <input 
+                        type="email" 
+                        name="email"
+                        placeholder="Email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                    <input 
+                        type="password" 
+                        name="password"
+                        placeholder="Password"
+                        value={formData.password}
+                        onChange={handleChange}
+                        required
+                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                    <button 
+                        type="submit" 
+                        className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition cursor-pointer">
+                            Log In
+                    </button>
+                    <hr className="my-4" />
+                    <button 
+                        onClick={handleGoogleLogin} 
+                        className="w-full flex items-center justify-center gap-2 border border-gray-300 py-2 rounded-md text-gray-700 hover:bg-gray-100 transition cursor-pointer">
+                        <FcGoogle className="text-xl" />Sign in with Google
+                    </button>
+                </form>
+                <p className="mt-4 text-center">
+                    Don't have an account? 
+                    <button 
+                        onClick={() => navigate("/login")} 
+                        className="text-blue-600 hover:underline ml-1 cursor-pointer">
+                            Sign in here
+                    </button>
+                </p>
+            </div>
         </div>
     );
 };
