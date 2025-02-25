@@ -69,7 +69,7 @@ const ViewJob = () => {
                                     <p className="text-lg"><strong className="text-gray-700">Company:</strong> {job.company}</p>
                                     <p className="text-lg"><strong className="text-gray-700">Position:</strong> {job.position}</p>
                                     <p className="text-lg"><strong className="text-gray-700">Status:</strong> {job.status}</p>
-                                    <p className="text-lg"><strong className="text-gray-700">Applied Date:</strong> {job.applied_date}</p>
+                                    <p className="text-lg"><strong className="text-gray-700">Applied Date:</strong> {new Date(job.applied_date).toISOString().split("T")[0]}</p>
                                     <p className="text-lg"><strong className="text-gray-700">Notes:</strong> {job.notes || "No additional notes."}</p>
                                     <div className="flex space-x-4 mt-6">
                                         <button onClick={toggleEditMode} className="bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600 cursor-pointer">
